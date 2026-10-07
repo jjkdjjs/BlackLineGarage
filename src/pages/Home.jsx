@@ -1,4 +1,11 @@
 import styles from './Home.module.css'
+import logoImg from '../assets/logo-em.png'
+import carroImg from '../assets/carro-prin.png'
+import pinturaImg from '../assets/servico-pintura.png'
+import rodaImg from '../assets/servico-roda.png'
+import freioImg from '../assets/servico-freio.png'
+import detalhamentoImg from '../assets/servico-detalhamento.png'
+import performanceImg from '../assets/servico-performance.png'
 
 const stats = [
   { value: '12+', label: 'anos de experiência' },
@@ -7,9 +14,31 @@ const stats = [
 ]
 
 const services = [
-  { title: 'Diagnóstico', text: 'Identificação rápida de falhas elétricas, mecânicas e de performance.' },
-  { title: 'Manutenção', text: 'Troca de óleo, revisão, alinhamento e inspeção geral do seu veículo.' },
-  { title: 'Detalhamento', text: 'Acabamento premium com lavagem, polimento e proteção de pintura.' },
+  {
+    title: 'Personalização completa',
+    text: 'Transforme o visual do seu carro com um projeto único.',
+    image: freioImg,
+  },
+  {
+    title: 'Detalhamento automotivo',
+    text: 'Cuidado minucioso para recuperar e proteger cada detalhe.',
+    image: detalhamentoImg,
+  },
+  {
+    title: 'Rodas e pneus',
+    text: 'Personalização de rodas para deixar seu carro ainda mais marcante.',
+    image: rodaImg,
+  },
+  {
+    title: 'Performance',
+    text: 'Modificações pensadas para melhorar desempenho e dirigibilidade.',
+    image: performanceImg,
+  },
+  {
+    title: 'Pintura automotiva',
+    text: 'Pintura e acabamento com qualidade profissional.',
+    image: pinturaImg,
+  },
 ]
 
 const gallery = [
@@ -23,12 +52,13 @@ function Home() {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <div className={styles.logo} >
-            <img src="/assets/logo-em.png" alt="Logo da BlackLine Garage" />
+        <div className={styles.logo}>
+          <img src={logoImg} alt="Logo da BlackLine Garage" />
         </div>
 
         <nav className={styles.nav} aria-label="Navegação principal">
           <a href="#inicio">Início</a>
+          <a href="#projetos">Projetos</a>
           <a href="#servicos">Serviços</a>
           <a href="#sobre">Sobre</a>
           <a href="#contato">Contato</a>
@@ -40,56 +70,80 @@ function Home() {
       </header>
 
       <section id="inicio" className={styles.hero}>
-        <div className={styles.heroContent}>
-          <span className={styles.eyebrow}>Garage premium</span>
-          <h1>Seu carro merece atenção de verdade.</h1>
-          <p>
-            Atendimento técnico, estética e cuidado premium para manter seu veículo
-            seguro, bonito e pronto para rodar com confiança.
-          </p>
 
-          <div className={styles.actions}>
-            <button type="button" className={styles.primaryButton}>
-              Solicitar orçamento
-            </button>
-            <button type="button" className={styles.secondaryButton}>
-              Ver serviços
-            </button>
-          </div>
+  <div className={styles.heroContent}>
 
-          <ul className={styles.statsList}>
-            {stats.map((item) => (
-              <li key={item.label}>
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <h1>
+      Seu carro merece atenção de verdade.
+    </h1>
 
-        <div className={styles.heroVisual} aria-label="Visualização da garagem">
-          <div className={styles.visualCard}>
-            <div className={styles.imagePlaceholder} />
-            <div className={styles.cardInfo}>
-              <span>Atendimento exclusivo</span>
-              <strong>Diagnóstico + revisão</strong>
-            </div>
-          </div>
-        </div>
-      </section>
+    <p>
+      Atendimento técnico, estética e cuidado premium para manter seu veículo
+      seguro, bonito e pronto para rodar com confiança.
+    </p>
 
-      <section id="servicos" className={styles.section}>
+    <div className={styles.actions}>
+      <button type="button" className={styles.primaryButton}>
+        Solicitar orçamento
+      </button>
+
+      <button type="button" className={styles.secondaryButton}>
+        Ver serviços
+      </button>
+    </div>
+  </div>
+
+
+  <div className={styles.heroVisual}>
+    <div className={styles.visualCard}>
+      <img
+        src={carroImg}
+        alt="Carro personalizado da BlackLine Garage"
+      />
+    </div>
+  </div>
+
+  <div className={styles.statsWrapper}>
+    <ul className={styles.statsList}>
+      {stats.map((item) => (
+        <li key={item.label}>
+          <strong>{item.value}</strong>
+          <span>{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+</section>
+
+      <section id="servicos" className={styles.servicesSection}>
         <div className={styles.sectionHeader}>
           <span className={styles.eyebrow}>Serviços</span>
-          <h2>O que fazemos por você</h2>
+
+          <h2>
+            Tudo para deixar seu carro do jeito que você imagina.
+          </h2>
         </div>
 
-        <div className={styles.cardGrid}>
+        <div className={styles.servicesGrid}>
           {services.map((service) => (
             <article key={service.title} className={styles.serviceCard}>
-              <div className={styles.iconBox} aria-hidden="true" />
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
+              <div className={styles.serviceImage}>
+                <img
+                  src={service.image}
+                  alt={service.title}
+                />
+              </div>
+
+              <div className={styles.serviceContent}>
+                <h3>{service.title}</h3>
+
+                <p>{service.text}</p>
+
+                <button type="button" className={styles.serviceLink}>
+                  Saiba mais →
+                </button>
+              </div>
             </article>
           ))}
         </div>
