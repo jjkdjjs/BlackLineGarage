@@ -6,6 +6,7 @@ import rodaImg from '../assets/servico-roda.png'
 import freioImg from '../assets/servico-freio.png'
 import detalhamentoImg from '../assets/servico-detalhamento.png'
 import performanceImg from '../assets/servico-performance.png'
+import carImg from '../assets/car-service.png'
 
 const stats = [
   { value: '12+', label: 'anos de experiência' },
@@ -118,8 +119,6 @@ function Home() {
 
       <section id="servicos" className={styles.servicesSection}>
         <div className={styles.sectionHeader}>
-          <span className={styles.eyebrow}>Serviços</span>
-
           <h2>
             Tudo para deixar seu carro do jeito que você imagina.
           </h2>
@@ -152,11 +151,13 @@ function Home() {
       <section id="sobre" className={styles.aboutSection}>
         <div className={styles.aboutImage} aria-hidden="true">
           <div className={styles.imageBlock} />
+          <img src={carImg} alt="Carro sendo detalhado na BlackLine Garage" />
         </div>
 
         <div className={styles.aboutContent}>
-          <span className={styles.eyebrow}>Sobre nós</span>
-          <h2>Precisão, transparência e cuidado com cada detalhe.</h2>
+          <h2>Precisão, transparência 
+            <br />
+            e cuidado com cada detalhe.</h2>
           <p>
             Somos uma garagem focada em entregar qualidade real, sem rodeios e com a
             atenção que seu veículo merece. Trabalhamos com foco em confiança,
@@ -193,17 +194,6 @@ function Home() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section id="contato" className={styles.ctaSection}>
-        <div>
-          <span className={styles.eyebrow}>Entre em contato</span>
-          <h2>Vamos deixar seu carro no melhor estado possível.</h2>
-        </div>
-
-        <button type="button" className={styles.primaryButton}>
-          Falar conosco
-        </button>
       </section>
     </main>
   )
