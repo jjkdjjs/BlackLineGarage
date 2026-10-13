@@ -7,6 +7,7 @@ import freioImg from '../assets/servico-freio.png'
 import detalhamentoImg from '../assets/servico-detalhamento.png'
 import performanceImg from '../assets/servico-performance.png'
 import carImg from '../assets/car-service.png'
+import carrosImg from '../assets/carros-final.png'
 
 const stats = [
   { value: '12+', label: 'anos de experiência' },
@@ -193,6 +194,16 @@ function Home() {
               <span>{item}</span>
             </div>
           ))}
+        </div>
+      </section>
+      <section id="info" className={styles.infoSection}>
+        <div className={styles.infoContent}>
+          <img src={carrosImg} alt="Carros personalizados na BlackLine Garage" />
+          <h2>Quer saber mais sobre nossos serviços?</h2>
+          <p>
+            Entre em contato com nossa equipe e descubra como podemos transformar
+            seu carro com qualidade, confiança e atenção aos detalhes.
+          </p>
         </div>
       </section>
     </main>
