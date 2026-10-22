@@ -1,5 +1,6 @@
 import styles from './Home.module.css'
-import logoImg from '../assets/logo-em.png'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import carroImg from '../assets/carro-prin.png'
 import pinturaImg from '../assets/servico-pintura.png'
 import rodaImg from '../assets/servico-roda.png'
@@ -7,7 +8,6 @@ import freioImg from '../assets/servico-freio.png'
 import detalhamentoImg from '../assets/servico-detalhamento.png'
 import performanceImg from '../assets/servico-performance.png'
 import carImg from '../assets/car-service.png'
-import carrosImg from '../assets/carros-final.png'
 
 const stats = [
   { value: '12+', label: 'anos de experiência' },
@@ -46,22 +46,22 @@ const services = [
 const gallery = [
   {
     title: 'Estética com personalidade',
-    category: '01 / Acabamento',
+    category: 'Acabamento',
     text: 'Um visual renovado, com atenção aos detalhes que fazem o seu carro se destacar.',
   },
   {
     title: 'Performance com propósito',
-    category: '02 / Desempenho',
+    category: 'Desempenho',
     text: 'Soluções pensadas para entregar uma experiência melhor ao volante.',
   },
   {
     title: 'Cuidado em cada detalhe',
-    category: '03 / Cuidado',
+    category: 'Cuidado',
     text: 'Serviços feitos com critério para valorizar e preservar o seu veículo.',
   },
   {
     title: 'Confiança do início ao fim',
-    category: '04 / Transparência',
+    category: 'Transparência',
     text: 'Atendimento próximo, orientação clara e atenção em cada etapa do serviço.',
   },
 ]
@@ -69,23 +69,7 @@ const gallery = [
 function Home() {
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.logo}>
-          <img src={logoImg} alt="Logo da BlackLine Garage" />
-        </div>
-
-        <nav className={styles.nav} aria-label="Navegação principal">
-          <a href="#inicio">Início</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
-        </nav>
-
-        <button type="button" className={styles.primaryButton}>
-          Agendar
-        </button>
-      </header>
+      <Header isHome />
 
       <main>
       <section id="inicio" className={styles.hero}>
@@ -198,7 +182,6 @@ function Home() {
 
       <section id="projetos" className={styles.section}>
         <div className={`${styles.sectionHeader} ${styles.resultsHeader}`}>
-          <span className={styles.eyebrow}>O jeito BlackLine</span>
           <h2>Mais do que um serviço. Um cuidado completo.</h2>
           <p>
             Qualidade, atenção e personalidade em cada etapa do trabalho.
@@ -221,58 +204,9 @@ function Home() {
           ))}
         </div>
       </section>
-      <section id="contato" className={styles.infoSection}>
-        <div className={styles.infoContent}>
-          <img src={carrosImg} alt="Carros personalizados na BlackLine Garage" />
-        </div>
-      </section>
       </main>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <div className={styles.footerTop}>
-            <a className={styles.footerBrand} href="#inicio" aria-label="BlackLine Garage — início">
-              <img src={logoImg} alt="" />
-              <span>Seu carro. Do seu jeito.</span>
-            </a>
-
-            <div className={styles.footerCta}>
-              <p>Pronto para dar o próximo passo?</p>
-              <a href="#contato" className={styles.footerCtaLink}>
-                Fale com a gente <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div className={styles.footerColumns}>
-            <div className={styles.footerDescription}>
-              <p>
-                Cuidado, personalidade e performance para acompanhar você em cada
-                caminho.
-              </p>
-            </div>
-
-            <nav className={styles.footerNav} aria-label="Links do rodapé">
-              <h2>Explore</h2>
-              <a href="#inicio">Início</a>
-              <a href="#projetos">Projetos</a>
-              <a href="#servicos">Serviços</a>
-              <a href="#sobre">Sobre nós</a>
-            </nav>
-
-            <div className={styles.footerContact}>
-              <h2>Vamos conversar?</h2>
-              <p>Conte o que você imagina para o seu carro.</p>
-              <a href="#contato">Entre em contato <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-
-          <div className={styles.footerBottom}>
-            <span>© {new Date().getFullYear()} BlackLine Garage. Todos os direitos reservados.</span>
-            <a href="#inicio">Voltar ao topo ↑</a>
-          </div>
-        </div>
-      </footer>
+      <Footer isHome />
     </div>
   )
 }
