@@ -45,7 +45,7 @@
 .primaryButton,
 .secondaryButton {
   border-radius: 999px;
-
+  text-decoration: none;
   padding: 14px 24px;
 
   font-size: 0.95rem;
@@ -443,8 +443,7 @@
 
   font-size: 0.85rem;
   font-weight: 700;
-
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .aboutSection {

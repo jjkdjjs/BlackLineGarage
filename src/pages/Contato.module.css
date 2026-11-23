@@ -65,6 +65,36 @@
   line-height: 1.8;
 }
 
+.contactHighlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 470px;
+  margin-top: 22px;
+}
+
+.contactHighlights div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 78px;
+  justify-content: center;
+  padding: 14px 16px;
+  border: 1px solid rgba(191, 197, 204, 0.12);
+  border-radius: 12px;
+  background: rgba(14, 18, 23, 0.82);
+}
+
+.contactHighlights strong {
+  color: #e5eaf0;
+  font-size: 0.82rem;
+}
+
+.contactHighlights span {
+  color: #8793a2;
+  font-size: 0.76rem;
+}
+
 .servicesLink {
   display: inline-flex;
   align-items: center;
@@ -326,6 +356,10 @@
 
   .contactIntro h1 {
     font-size: clamp(2.4rem, 11vw, 3.5rem);
+  }
+
+  .contactHighlights {
+    grid-template-columns: 1fr;
   }
 
   .formCard {

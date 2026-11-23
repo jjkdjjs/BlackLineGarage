@@ -72,7 +72,18 @@ function Contato() {
               precisa e pensar no melhor caminho junto com você.
             </p>
 
-            <a className={styles.servicesLink} href="/#servicos">
+            <div className={styles.contactHighlights} aria-label="Informações do atendimento">
+              <div>
+                <strong>Orçamento claro</strong>
+                <span>Sem custos ocultos</span>
+              </div>
+              <div>
+                <strong>Atendimento próximo</strong>
+                <span>Você acompanha o projeto</span>
+              </div>
+            </div>
+
+            <a className={styles.servicesLink} href="/servicos">
               Conheça nossos serviços <span aria-hidden="true">↗</span>
             </a>
 

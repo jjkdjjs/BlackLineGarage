@@ -86,13 +86,13 @@ function Home() {
     </p>
 
     <div className={styles.actions}>
-      <button type="button" className={styles.primaryButton}>
+      <a className={styles.primaryButton} href="/contato">
         Solicitar orçamento
-      </button>
+      </a>
 
-      <button type="button" className={styles.secondaryButton}>
+      <a className={styles.secondaryButton} href="/servicos">
         Ver serviços
-      </button>
+      </a>
     </div>
   </div>
 
@@ -141,9 +141,9 @@ function Home() {
 
                 <p>{service.text}</p>
 
-                <button type="button" className={styles.serviceLink}>
+                <a className={styles.serviceLink} href="/servicos">
                   Saiba mais →
-                </button>
+                </a>
               </div>
             </article>
           ))}
