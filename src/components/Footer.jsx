@@ -5,57 +5,102 @@ import carrosImg from '../assets/carros-final.png'
 const currentYear = new Date().getFullYear()
 
 function Footer() {
+  function handleScrollTop(event) {
+    event.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerInner}>
-        <div className={styles.footerTop}>
-          <a className={styles.footerBrand} href="/" aria-label="BlackLine Garage — início">
-            <img src={logoImg} alt="" />
-            <span>Seu carro. Do seu jeito.</span>
-          </a>
+      <div className={styles.watermark} aria-hidden="true">
+        BLACKLINE
+      </div>
 
-          <div className={styles.footerCta}>
-            <div>
-              <span className={styles.footerLabel}>Vamos começar?</span>
-              <p>Pronto para dar o próximo passo?</p>
+      <div className={styles.footerInner}>
+        {/* PALCO DE DESTAQUE DO SHOWROOM */}
+        <div className={styles.showroomStage}>
+          <div className={styles.stageText}>
+            <h2>
+              Seu carro. <span>Do seu jeito.</span>
+            </h2>
+            <p>
+              Da estética ao acerto dinâmico, tiramos seu projeto do papel em
+              Blumenau com acabamento técnico e acompanhamento real.
+            </p>
+
+            <div className={styles.stageActions}>
+              <a href="/contato" className={styles.primaryCta}>
+                Agendar avaliação <span aria-hidden="true">↗</span>
+              </a>
+              <span className={styles.locationBadge}>
+                <i aria-hidden="true" />
+                Blumenau · SC
+              </span>
             </div>
-            <a href="/contato" className={styles.footerCtaLink}>
-              Fale com a gente <span aria-hidden="true">↗</span>
-            </a>
+          </div>
+
+          <div className={styles.stageCar}>
+            <div className={styles.spotlight} aria-hidden="true" />
+            <img src={carrosImg} alt="Carros personalizados na BlackLine Garage" />
+            <div className={styles.floorLine} aria-hidden="true" />
           </div>
         </div>
 
-        <div className={styles.footerColumns}>
-          <div className={styles.footerAbout}>
-            <h2>Sobre a BlackLine</h2>
+        {/* COLUNAS ARQUITETÔNICAS */}
+        <div className={styles.footerGrid}>
+          <div className={styles.brandCol}>
+            <a className={styles.footerBrand} href="/" aria-label="BlackLine Garage — início">
+              <img src={logoImg} alt="BlackLine Garage" />
+            </a>
             <p>
-              Cuidado, personalidade e performance para acompanhar você em cada
-              caminho.
+              Estética automotiva, personalização completa e performance para
+              quem exige precisão em cada detalhe.
             </p>
           </div>
 
-          <nav className={styles.footerNav} aria-label="Links do rodapé">
-            <h2>Explore</h2>
+          <nav className={styles.navCol} aria-label="Navegação principal">
+            <h3>Navegação</h3>
             <a href="/">Início</a>
             <a href="/projetos">Projetos</a>
             <a href="/servicos">Serviços</a>
             <a href="/sobre">Sobre nós</a>
+            <a href="/contato">Contato</a>
           </nav>
 
-          <nav className={styles.footerNav} aria-label="Links de atendimento">
-            <h2>Atendimento</h2>
-            <a href="/contato">Solicitar orçamento</a>
-            <a href="/servicos">Conhecer serviços</a>
+          <nav className={styles.navCol} aria-label="Orçamento por especialidade">
+            <h3>Especialidades</h3>
+            <a href="/contato?servico=personalizacao">Personalização</a>
+            <a href="/contato?servico=detalhamento">Detalhamento</a>
+            <a href="/contato?servico=rodas">Rodas e pneus</a>
+            <a href="/contato?servico=performance">Performance</a>
+            <a href="/contato?servico=pintura">Pintura automotiva</a>
           </nav>
 
-          <div className={styles.footerImage}>
-            <img src={carrosImg} alt="Carros personalizados na BlackLine Garage" />
+          <div className={styles.studioCol}>
+            <h3>Estúdio & Horários</h3>
+            <p className={styles.address}>
+              Parque Ramiro Ruediger
+              <span>Rua Alberto Stein, 416 · Velha, Blumenau - SC</span>
+            </p>
+            <div className={styles.hours}>
+              <div>
+                <span>Seg — Sex</span>
+                <strong>08h às 18h</strong>
+              </div>
+              <div>
+                <span>Sábado</span>
+                <strong>08h às 12h</strong>
+              </div>
+            </div>
           </div>
         </div>
 
+        {/* BARRA FINAL */}
         <div className={styles.footerBottom}>
           <span>© {currentYear} BlackLine Garage. Todos os direitos reservados.</span>
-          <a href="#">Voltar ao topo ↑</a>
+          <a href="#topo" onClick={handleScrollTop}>
+            Voltar ao topo <span aria-hidden="true">↑</span>
+          </a>
         </div>
       </div>
     </footer>

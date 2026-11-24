@@ -1,11 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from './Contato.module.css'
 
+const VALID_SERVICES = [
+  'personalizacao',
+  'detalhamento',
+  'rodas',
+  'performance',
+  'pintura',
+  'outro',
+]
+
+function formatPhone(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 11)
+  if (digits.length <= 2) return digits
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+  if (digits.length <= 10) {
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`
+  }
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+}
+
 function Contato() {
   const [message, setMessage] = useState({ text: '', type: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [phone, setPhone] = useState('')
+  const [selectedService, setSelectedService] = useState('')
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const serviceParam = params.get('servico')
+    if (serviceParam && VALID_SERVICES.includes(serviceParam)) {
+      setSelectedService(serviceParam)
+    }
+  }, [])
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -16,18 +45,21 @@ function Contato() {
     setMessage({ text: '', type: '' })
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/4553544406@estudante.sed.sc.gov.br', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...Object.fromEntries(formData.entries()),
-          _subject: 'Novo contato - BlackLine Garage',
-          _template: 'table',
-        }),
-      })
+      const response = await fetch(
+        'https://formsubmit.co/ajax/4553544406@estudante.sed.sc.gov.br',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...Object.fromEntries(formData.entries()),
+            _subject: 'Novo contato - BlackLine Garage',
+            _template: 'table',
+          }),
+        }
+      )
       const result = await response.json()
 
       if (!response.ok || ![true, 'true'].includes(result.success)) {
@@ -35,8 +67,10 @@ function Contato() {
       }
 
       form.reset()
+      setPhone('')
+      setSelectedService('')
       setMessage({
-        text: 'Mensagem enviada! Em breve entraremos em contato.',
+        text: 'Mensagem enviada! Nossa equipe retornará em breve.',
         type: 'success',
       })
     } catch {
@@ -54,71 +88,61 @@ function Contato() {
       <Header />
 
       <main>
-        <section id="contato" className={styles.contactSection} aria-labelledby="contact-title">
+        {/* BLOCO SUPERIOR: APRESENTAÇÃO + FORMULÁRIO NIVELADOS */}
+        <section
+          id="contato"
+          className={styles.contactSection}
+          aria-labelledby="contact-title"
+        >
           <div className={styles.contactIntro}>
-            <span className={styles.eyebrow}>
-              <span aria-hidden="true" />
-              BlackLine Garage · Contato
-            </span>
+            <div>
+              <h1 id="contact-title">
+                Seu próximo projeto <span>começa com uma conversa.</span>
+              </h1>
 
-            <h1 id="contact-title">
-              Seu próximo projeto
-              <br />
-              <span>começa com uma conversa.</span>
-            </h1>
-
-            <p className={styles.introText}>
-              Conte pra gente o que você imaginou. Vamos entender o que seu carro
-              precisa e pensar no melhor caminho junto com você.
-            </p>
-
-            <div className={styles.contactHighlights} aria-label="Informações do atendimento">
-              <div>
-                <strong>Orçamento claro</strong>
-                <span>Sem custos ocultos</span>
-              </div>
-              <div>
-                <strong>Atendimento próximo</strong>
-                <span>Você acompanha o projeto</span>
-              </div>
+              <p className={styles.introText}>
+                Conte pra gente o que você imaginou. Avaliamos o que o seu carro
+                precisa e definimos o melhor caminho técnico junto com você, sem
+                compromisso.
+              </p>
             </div>
 
-            <a className={styles.servicesLink} href="/servicos">
-              Conheça nossos serviços <span aria-hidden="true">↗</span>
-            </a>
+            <div
+              className={styles.highlightsGrid}
+              aria-label="Diferenciais do atendimento"
+            >
+              <article>
+                <strong>Orçamento transparente</strong>
+                <span>Escopo detalhado antes de iniciar</span>
+              </article>
+              <article>
+                <strong>Atendimento próximo</strong>
+                <span>Atualizações reais durante o serviço</span>
+              </article>
+              <article>
+                <strong>Segunda a Sexta</strong>
+                <span>08h às 18h · Atendimento na garagem</span>
+              </article>
+              <article>
+                <strong>Sábados</strong>
+                <span>08h às 12h · Com horário agendado</span>
+              </article>
+            </div>
 
-            <div className={styles.locationCard}>
-              <div className={styles.locationHeading}>
-                <span className={styles.noteIcon} aria-hidden="true">⌖</span>
-                <div>
-                  <strong>Ponto de referência em Blumenau</strong>
-                  <p>Parque Ramiro Ruediger</p>
-                  <p>Rua Alberto Stein, 416 - Velha, Blumenau - SC</p>
-                </div>
-              </div>
-              <iframe
-                className={styles.map}
-                title="Mapa do Parque Ramiro Ruediger em Blumenau"
-                src="https://www.google.com/maps?q=Parque+Ramiro+Ruediger,+Rua+Alberto+Stein,+416,+Blumenau,+SC&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <a
-                className={styles.mapLink}
-                href="https://www.google.com/maps/search/?api=1&query=Parque+Ramiro+Ruediger,+Rua+Alberto+Stein,+416,+Blumenau,+SC"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Abrir no Google Maps <span aria-hidden="true">↗</span>
+            <div className={styles.introFooter}>
+              <a className={styles.secondaryLink} href="/servicos">
+                Ver catálogo de serviços <span aria-hidden="true">↗</span>
+              </a>
+              <a className={styles.secondaryLink} href="/projetos">
+                Explorar projetos <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
 
           <div className={styles.formCard}>
             <div className={styles.formHeading}>
-              <span>FALE COM A GENTE</span>
               <h2>Vamos tirar sua ideia do papel?</h2>
-              <p>Preencha os campos e conte um pouco sobre o seu carro.</p>
+              <p>Preencha os dados abaixo com as informações do seu veículo.</p>
             </div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
@@ -147,20 +171,29 @@ function Contato() {
 
               <div className={styles.fieldRow}>
                 <label className={styles.field}>
-                  <span>Telefone</span>
+                  <span>Telefone / WhatsApp</span>
                   <input
                     autoComplete="tel"
                     name="phone"
                     placeholder="(00) 00000-0000"
                     type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(formatPhone(e.target.value))}
                   />
                 </label>
 
                 <label className={styles.field}>
-                  <span>O que você procura?</span>
-                  <select defaultValue="" name="service" required>
-                    <option disabled value="">Selecione um serviço</option>
-                    <option value="personalizacao">Personalização</option>
+                  <span>Serviço desejado</span>
+                  <select
+                    name="service"
+                    required
+                    value={selectedService}
+                    onChange={(e) => setSelectedService(e.target.value)}
+                  >
+                    <option disabled value="">
+                      Selecione uma opção
+                    </option>
+                    <option value="personalizacao">Personalização completa</option>
                     <option value="detalhamento">Detalhamento automotivo</option>
                     <option value="rodas">Rodas e pneus</option>
                     <option value="performance">Performance</option>
@@ -171,28 +204,85 @@ function Contato() {
               </div>
 
               <label className={styles.field}>
+                <span>Veículo (modelo e ano)</span>
+                <input
+                  name="vehicle"
+                  placeholder="Ex: Civic Si 2020, Golf GTI 2018..."
+                />
+              </label>
+
+              <label className={styles.field}>
                 <span>Como podemos ajudar?</span>
                 <textarea
                   name="details"
-                  placeholder="Conte um pouco sobre o carro e o que você tem em mente..."
+                  placeholder="Descreva o que você gostaria de fazer no carro, objetivos ou dúvidas..."
                   required
                   rows="4"
                 />
               </label>
 
-              <button className={styles.submitButton} type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Enviando...' : 'Enviar mensagem'}
+              <button
+                className={styles.submitButton}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Enviando mensagem...' : 'Enviar mensagem'}
                 {!isSubmitting && <span aria-hidden="true">↗</span>}
               </button>
 
               <p
-                className={`${styles.status} ${message.type ? styles[message.type] : ''}`}
+                className={`${styles.status} ${
+                  message.type ? styles[message.type] : ''
+                }`}
                 role="status"
                 aria-live="polite"
               >
                 {message.text}
               </p>
             </form>
+          </div>
+        </section>
+
+        {/* BLOCO INFERIOR: LOCALIZAÇÃO E MAPA ALINHADOS NA LARGURA TOTAL */}
+        <section
+          className={styles.locationSection}
+          aria-labelledby="location-title"
+        >
+          <div className={styles.locationCard}>
+            <div className={styles.locationInfo}>
+              <div>
+                <h2 id="location-title">Atendimento presencial em Blumenau.</h2>
+                <p className={styles.addressBlock}>
+                  <strong>Parque Ramiro Ruediger · Referência</strong>
+                  <span>Rua Alberto Stein, 416 - Velha, Blumenau - SC</span>
+                </p>
+              </div>
+
+              <ul className={styles.visitChecklist}>
+                <li>Diagnóstico técnico presencial sob agendamento</li>
+                <li>Vagas limitadas na baia para atenção exclusiva</li>
+                <li>Orçamento e prazos alinhados antes de qualquer etapa</li>
+              </ul>
+
+              <a
+                className={styles.mapButton}
+                href="https://www.google.com/maps/search/?api=1&query=Parque+Ramiro+Ruediger,+Rua+Alberto+Stein,+416,+Blumenau,+SC"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Abrir rota no Google Maps <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <div className={styles.mapWrapper}>
+              <iframe
+                className={styles.map}
+                title="Mapa da região do Parque Ramiro Ruediger em Blumenau"
+                src="https://www.google.com/maps?q=Parque+Ramiro+Ruediger,+Rua+Alberto+Stein,+416,+Blumenau,+SC&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </section>
       </main>
