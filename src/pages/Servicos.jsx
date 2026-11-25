@@ -350,24 +350,6 @@ function Servicos() {
             </div>
           </div>
         </section>
-
-        {/* CTA FINAL ALINHADO */}
-        <section className={styles.ctaSection}>
-          <div className={styles.container}>
-            <div className={styles.ctaBox}>
-              <div>
-                <h2>Conte pra gente o que você imagina.</h2>
-                <p>
-                  Retornamos com opções técnicas, prazos e orçamento detalhado
-                  para o seu veículo.
-                </p>
-              </div>
-              <a href="/contato">
-                Fale com a gente <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

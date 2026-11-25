@@ -68,6 +68,21 @@ const steps = [
   },
 ]
 
+const manifestoCommitments = [
+  {
+    title: 'Sem linha de produção',
+    text: 'Limitamos o número de veículos na baia para que nenhum prazo comprometa o tempo de cura ou o acabamento.',
+  },
+  {
+    title: 'Rastreabilidade técnica',
+    text: 'Registramos espessura de verniz, compostos aplicados e etapas concluídas para o histórico do seu veículo.',
+  },
+  {
+    title: 'Pós-entrega acompanhado',
+    text: 'Orientamos a lavagem correta e os produtos ideais para manter o resultado preservado por anos.',
+  },
+]
+
 function Sobre() {
   return (
     <div className={styles.page}>
@@ -76,10 +91,6 @@ function Sobre() {
         {/* HERO EDITORIAL ASSIMÉTRICO */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <span className={styles.eyebrow}>
-              <span aria-hidden="true" />
-              BlackLine Garage · Blumenau, SC
-            </span>
             <h1>
               Paixão por carros. <span>Compromisso com detalhes.</span>
             </h1>
@@ -273,19 +284,45 @@ function Sobre() {
           </div>
         </section>
 
-        {/* CTA FINAL */}
-        <section className={styles.story}>
-          <div className={styles.storyLogo}>
-            <img src={logoImg} alt="BlackLine Garage" />
-          </div>
-          <div className={styles.storyContent}>
-            <h2>Seu carro merece um projeto feito sob medida.</h2>
+        {/* MANIFESTO & COMPROMISSO DA GARAGEM */}
+        <section className={styles.manifestoSection}>
+          <div className={styles.sectionIntro}>
+            <h2>Não entregamos volume. Entregamos padrão de estúdio.</h2>
             <p>
-              Nosso processo começa ouvindo você. Depois, avaliamos as
-              possibilidades, definimos prioridades e seguimos até o acabamento
-              final sem atalhos.
+              Acreditamos que estética e performance automotiva exigem calma,
+              técnica documentada e respeito pela originalidade de cada carro
+              que entra pela nossa porta.
             </p>
-            <a href="/contato">Conhecer a equipe <span>↗</span></a>
+          </div>
+
+          <div className={styles.garageLocationCard}>
+            <div className={styles.garageBrandRow}>
+              <img src={logoImg} alt="BlackLine Garage" />
+              <div>
+                <strong>BlackLine Garage</strong>
+                <span>Blumenau · Santa Catarina</span>
+              </div>
+            </div>
+
+            <div className={styles.garageInfoList}>
+              <div>
+                <small>Atendimento</small>
+                <span>Segunda a Sexta · 08h às 18h</span>
+              </div>
+              <div>
+                <small>Sábados</small>
+                <span>08h30 às 12h30 (avaliações agendadas)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.manifestoCommitments}>
+            {manifestoCommitments.map((item) => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
           </div>
         </section>
       </main>
