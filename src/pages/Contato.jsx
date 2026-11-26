@@ -222,7 +222,6 @@ function Contato() {
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Enviando mensagem...' : 'Enviar mensagem'}
-                {!isSubmitting && <span aria-hidden="true">↗</span>}
               </button>
 
               <p

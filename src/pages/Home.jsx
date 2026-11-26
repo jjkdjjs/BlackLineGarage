@@ -97,7 +97,7 @@ function Home() {
 
             <div className={styles.actions}>
               <a className={styles.primaryButton} href="/contato">
-                Solicitar orçamento <span aria-hidden="true">↗</span>
+                Solicitar orçamento 
               </a>
 
               <a className={styles.secondaryButton} href="/projetos">
@@ -138,7 +138,7 @@ function Home() {
           <div className={styles.sectionHeader}>
             <h2>Tudo para deixar seu carro do jeito que você imagina.</h2>
             <a href="/servicos">
-              Ver catálogo completo <span aria-hidden="true">↗</span>
+              Ver catálogo completo 
             </a>
           </div>
 
@@ -206,7 +206,7 @@ function Home() {
             </div>
 
             <a className={styles.aboutLink} href="/sobre">
-              Conhecer nossa estrutura <span aria-hidden="true">↗</span>
+              Conhecer nossa estrutura 
             </a>
           </div>
         </section>
