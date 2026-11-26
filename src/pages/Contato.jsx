@@ -40,30 +40,25 @@ function Contato() {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
+    formData.set('_subject', 'Novo contato - BlackLine Garage')
 
     setIsSubmitting(true)
     setMessage({ text: '', type: '' })
 
     try {
       const response = await fetch(
-        'https://formsubmit.co/ajax/4553544406@estudante.sed.sc.gov.br',
+        'https://formspree.io/f/xrpqdoya',
         {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            ...Object.fromEntries(formData.entries()),
-            _subject: 'Novo contato - BlackLine Garage',
-            _template: 'table',
-          }),
+          body: formData,
         }
       )
-      const result = await response.json()
 
-      if (!response.ok || ![true, 'true'].includes(result.success)) {
-        throw new Error(result.message || 'Não foi possível enviar a mensagem.')
+      if (!response.ok) {
+        throw new Error('Não foi possível enviar a mensagem.')
       }
 
       form.reset()

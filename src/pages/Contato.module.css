@@ -246,7 +246,7 @@
 
 .field textarea {
   min-height: 108px;
-  resize: vertical;
+  resize: none;
 }
 
 .field input:hover,
