@@ -2,11 +2,11 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from './Servicos.module.css'
-import pinturaImg from '../assets/servico-pintura.png'
-import rodaImg from '../assets/servico-roda.png'
-import freioImg from '../assets/servico-freio.png'
-import detalhamentoImg from '../assets/servico-detalhamento.png'
-import performanceImg from '../assets/servico-performance.png'
+import pinturaImg from '../assets/pintura.jpg'
+import rodasImg from '../assets/rodas.png'
+import personalizacaoImg from '../assets/personalizacao.jpg'
+import limpezaImg from '../assets/limpeza.png'
+import performance1Img from '../assets/performance1.jpg'
 
 const featuredService = {
   number: '01',
@@ -15,7 +15,7 @@ const featuredService = {
   meta: 'Projeto sob medida · Acompanhamento integral',
   text: 'Projetamos a transformação completa do seu carro, alinhando estética externa, acabamentos internos, envelopamento, detalhes em black piano e harmonia visual sem perder a identidade do veículo.',
   highlights: ['Consultoria visual', 'Acabamento artesanal', 'Registro por etapas'],
-  image: freioImg,
+  image: personalizacaoImg,
 }
 
 const services = [
@@ -25,7 +25,7 @@ const services = [
     title: 'Detalhamento automotivo',
     meta: '2 a 4 dias · Proteção cerâmica 9H',
     text: 'Limpeza técnica profunda, descontaminação, correção de pintura em múltiplos estágios e vitrificação para recuperar brilho e preservar o verniz.',
-    image: detalhamentoImg,
+    image: limpezaImg,
   },
   {
     number: '03',
@@ -33,7 +33,7 @@ const services = [
     title: 'Rodas e pneus',
     meta: 'Fitment preciso · Balanceamento técnico',
     text: 'Composição de rodas, medidas de pneus, pintura de pinças em alta temperatura e geometria escolhida para valorizar o visual com segurança.',
-    image: rodaImg,
+    image: rodasImg,
   },
   {
     number: '04',
@@ -41,7 +41,7 @@ const services = [
     title: 'Performance',
     meta: 'Setup urbano ou track · Peças homologadas',
     text: 'Melhorias de resposta, suspensão, freios e dirigibilidade com planejamento técnico e foco total na confiabilidade mecânica.',
-    image: performanceImg,
+    image: performance1Img,
   },
   {
     number: '05',

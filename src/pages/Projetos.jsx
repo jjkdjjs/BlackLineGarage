@@ -3,9 +3,10 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from './Projetos.module.css'
 import carrosImg from '../assets/carros-final.png'
-import pinturaImg from '../assets/servico-pintura.png'
-import rodaImg from '../assets/servico-roda.png'
-import performanceImg from '../assets/servico-performance.png'
+import acabamentoImg from '../assets/acabamento.png'
+import esteticaImg from '../assets/estetica.png'
+import fitmentImg from '../assets/fitment.png'
+import performanceImg from '../assets/performance.png'
 
 const projects = [
   {
@@ -16,7 +17,7 @@ const projects = [
     duration: '4 dias na baia',
     text: 'Conjunto de repintura localizada, detalhes em black piano, correção de verniz e vitrificação cerâmica criado sob medida.',
     specs: ['Correção em 3 etapas', 'Vitrificação 9H', 'Acabamento de fábrica'],
-    image: pinturaImg,
+    image: esteticaImg,
   },
   {
     number: '02',
@@ -26,7 +27,7 @@ const projects = [
     duration: '2 dias na baia',
     text: 'Composição de rodas, medidas de pneus, pintura de pinças em alta temperatura e geometria ajustada para presença e estabilidade.',
     specs: ['Fitment milimétrico', 'Pintura de pinças', 'Balanceamento técnico'],
-    image: rodaImg,
+    image: fitmentImg,
   },
   {
     number: '03',
@@ -46,7 +47,7 @@ const projects = [
     duration: '6 dias na baia',
     text: 'Transformação integrada unindo estética externa, revitalização interna, rodas e proteção total de pintura para carros de coleção ou uso diário.',
     specs: ['Consultoria completa', 'Proteção integral', 'Relatório fotográfico'],
-    image: carrosImg,
+    image: acabamentoImg,
   },
 ]
 

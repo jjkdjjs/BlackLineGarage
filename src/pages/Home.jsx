@@ -7,7 +7,7 @@ import rodaImg from '../assets/servico-roda.png'
 import freioImg from '../assets/servico-freio.png'
 import detalhamentoImg from '../assets/servico-detalhamento.png'
 import performanceImg from '../assets/servico-performance.png'
-import carImg from '../assets/car-service.png'
+import carImg from '../assets/car-service2.jpg'
 
 const stats = [
   { value: '12+', label: 'anos de experiência em estética e preparo' },
